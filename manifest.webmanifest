@@ -1,0 +1,16 @@
+{
+  "name": "Jacq appli",
+  "short_name": "Jacq appli",
+  "description": "Messagerie privée développée par Jacques",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#075e54",
+  "theme_color": "#075e54",
+  "lang": "fr",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

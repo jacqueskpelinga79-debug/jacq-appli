@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jacq appli</title>
+    <meta name="theme-color" content="#075e54">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="icon" href="./icon-192.png">
+    <link rel="apple-touch-icon" href="./icon-192.png">
+  </head>
+  <body>
+    <div id="ecran-auth" class="ecran-auth">
+      <form id="form-auth" class="carte-auth">
+        <h2>Jacq appli</h2>
+        <p id="titre-auth">Connecte-toi</p>
+
+        <input type="text" id="auth-pseudo"
+               placeholder="Ton pseudo (2 à 20 caractères)" maxlength="20"
+               autocomplete="nickname">
+        <input type="email" id="auth-email"
+               placeholder="Ton e-mail" required
+               autocomplete="email">
+        <input type="password" id="auth-mdp"
+               placeholder="Mot de passe (6 caractères min.)"
+               required minlength="6"
+               autocomplete="current-password">
+
+        <p id="auth-erreur" class="erreur"></p>
+        <p id="auth-info" class="info"></p>
+
+        <button type="submit" id="auth-bouton" class="gros">Se connecter</button>
+        <button type="button" id="auth-oublie" class="lien">
+          Mot de passe oublié ?
+        </button>
+        <button type="button" id="auth-bascule" class="lien">
+          Pas de compte ? Créer un compte
+        </button>
+
+        <p class="credit">Application développée par Jacques</p>
+      </form>
+    </div>
+
+    <div id="ecran-verif" class="ecran-auth cache">
+      <div class="carte-auth">
+        <h2>Vérifie ton e-mail 📧</h2>
+        <p>Un message de confirmation a été envoyé à
+          <strong id="verif-email"></strong>.</p>
+        <p>Ouvre-le et appuie sur le lien. Regarde aussi dans les
+          courriers indésirables (spam).</p>
+
+        <p id="verif-erreur" class="erreur"></p>
+        <p id="verif-info" class="info"></p>
+
+        <button type="button" id="verif-ok" class="gros">
+          J'ai confirmé mon e-mail
+        </button>
+        <button type="button" id="verif-renvoyer" class="lien">
+          Renvoyer l'e-mail
+        </button>
+        <button type="button" id="verif-quitter" class="lien">
+          Se déconnecter
+        </button>
+      </div>
+    </div>
+
+    <div id="ecran-liste" class="page cache">
+      <header class="entete">
+        <h1>Discussions</h1>
+        <div class="droite">
+          <button type="button" id="btn-profil"></button>
+        </div>
+      </header>
+
+      <div class="bandeau">Application développée par Jacques</div>
+
+      <div id="panneau-profil" class="panneau cache">
+        <form id="form-profil">
+          <p>Ton pseudo :</p>
+          <div class="ligne">
+            <input type="text" id="champ-profil"
+                   maxlength="20" required autocomplete="off">
+            <button type="submit">Enregistrer</button>
+          </div>
+          <p id="message-profil" class="message-panneau"></p>
+        </form>
+        <div class="actions-profil">
+          <button type="button" id="btn-theme">🌙 Mode sombre</button>
+          <button type="button" id="btn-quitter">Se déconnecter</button>
+        </div>
+      </div>
+
+      <form id="form-ami" class="panneau cache">
+        <p>Ajoute un ami avec son e-mail :</p>
+        <div class="ligne">
+          <input type="email" id="champ-ami"
+                 placeholder="E-mail de ton ami"
+                 required autocomplete="off">
+          <button type="submit">Chercher</button>
+        </div>
+        <p id="message-ami" class="message-panneau"></p>
+        <button type="button" id="btn-inviter" class="btn-inviter">
+          📲 Inviter un ami sur WhatsApp
+        </button>
+      </form>
+
+      <div class="recherche">
+        <input type="search" id="champ-recherche"
+               placeholder="Rechercher une discussion..."
+               autocomplete="off">
+      </div>
+
+      <p id="liste-vide" class="vide cache"></p>
+      <div id="liste-conv"></div>
+
+      <button type="button" id="btn-plus" class="bouton-plus">+</button>
+    </div>
+
+    <div id="ecran-conv" class="page cache">
+      <header class="entete">
+        <div class="droite">
+          <button type="button" id="btn-retour">←</button>
+          <div id="avatar-conv" class="conv-avatar petit"></div>
+          <div class="titres">
+            <h1 id="titre-conv"></h1>
+            <div id="statut-conv" class="statut"></div>
+          </div>
+        </div>
+        <button type="button" id="btn-menu-conv" class="btn-menu-conv">⋮</button>
+      </header>
+
+      <div id="messages"></div>
+
+      <div id="barre-contexte" class="barre-contexte cache">
+        <div class="contexte-texte">
+          <strong id="contexte-titre"></strong>
+          <span id="contexte-corps"></span>
+        </div>
+        <button type="button" id="contexte-fermer">✕</button>
+      </div>
+
+      <div id="panneau-emojis" class="panneau-emojis cache"></div>
+
+      <div id="barre-bloque" class="barre-bloque cache">
+        🚫 Tu as bloqué ce contact. Appuie sur ⋮ en haut pour le débloquer.
+      </div>
+
+      <form id="form-message">
+        <button type="button" id="btn-emoji">😊</button>
+        <input type="text" id="texte"
+               placeholder="Écris un message..."
+               autocomplete="off" required>
+        <button type="submit" id="btn-envoyer">➤</button>
+      </form>
+    </div>
+
+    <div id="feuille" class="feuille cache">
+      <div id="feuille-fond" class="feuille-fond"></div>
+      <div class="feuille-contenu">
+        <p id="feuille-titre" class="feuille-titre"></p>
+        <button type="button" id="act-epingler"></button>
+        <button type="button" id="act-bloquer"></button>
+        <button type="button" id="act-supprimer" class="danger">
+          🗑 Supprimer la discussion
+        </button>
+        <button type="button" id="act-annuler">Annuler</button>
+      </div>
+    </div>
+
+    <div id="toast" class="toast cache"></div>
+
+    <script type="module" src="./script.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js").catch(() => {});
+        });
+      }
+    </script>
+  </body>
+</html>
